@@ -21,37 +21,14 @@ class Player(object):
         return self.userUniqId    
    
 print('TicTacToe Python Version')
-print('\nGiocatore 1')
-    
-userId_Player1 = input("Per iniziare scrivi il tuo nome: ")
 
-while True:
-    if len(userId_Player1) < 30:
-        break
-    for c in userId_Player1:
-        if not c.isdigit():
-            break
-        else:
-            print("Nome non valido\n")
-            continue
-    else:
-        print("Nome non valido\n")
-        continue
-    
-        
+# Player 1 { get; set;}
+print('\nGiocatore 1')    
+userId_Player1 = input("Per iniziare scrivi il tuo nome: ")         
 syncVarNickname_Player1 = input("Scegli il tuo Username: ")
-if syncVarNickname_Player1.len > 16:
-    lenghtCheck = True
-    while lenghtCheck == True:
-        try:
-            syncVarNickname_Player1 = input("Scegli il tuo Username: ")
-        except ValueError:
-            print("Username troppo lungo. Non deve superare i 16 caratteri")
-            continue
-        else:
-            break
 userUniqId_Player1 = input("Inserisci la tua età: ")
 
+# Player 2 { get; set;}
 print('\nGiocatore 2')
 userId_Player2 = input("Per iniziare scrivi il tuo nome: ")
 syncVarNickname_Player2 = input("Scegli il tuo Username: ")
@@ -59,7 +36,8 @@ userUniqId_Player2 = input("Inserisci la tua età: ")
 
 Player1 = Player()
 Player1 = Player.ReferenceHub(Player1, userId_Player1, syncVarNickname_Player1, userUniqId_Player1)
-
+Player2 = Player()
+Player2 = Player.ReferenceHub(Player2, userId_Player2, syncVarNickname_Player2, userUniqId_Player2)
 
 
 boardGame = {'7': ' ' , '8': ' ' , '9': ' ' ,
@@ -84,7 +62,7 @@ def game():
     
     for i in range(10):
         backgroundBoard(boardGame)
-        print(f"Tuo turno: {playerTurn}. Dove vuoi muovere?" )
+        print(Player1.ReferenceHub.GetUserId() + " è il tuo turno. Usa 'X'.\nDove vuoi muovere?" )
         
         move = input()
         
@@ -134,7 +112,7 @@ def game():
             elif boardGame['7'] == boardGame['5'] == boardGame['3'] != ' ':
                 backgroundBoard(boardGame)
                 print("\nFine del gioco\n")
-                print("\nHai vinto\n")
+                print(" hai vinto\n")
                 break
             
             if playersTurnCounter == 9:
