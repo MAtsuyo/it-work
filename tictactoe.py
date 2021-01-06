@@ -26,13 +26,13 @@ print('TicTacToe Python Version')
 print('\nGiocatore 1')    
 userId_Player1 = input("Per iniziare scrivi il tuo nome: ")         
 syncVarNickname_Player1 = input("Scegli il tuo Username: ")
-userUniqId_Player1 = input("Inserisci la tua età: ")
+userUniqId_Player1 = input("Come stai uwu?: ")
 
 # Player 2 { get; set;}
 print('\nGiocatore 2')
 userId_Player2 = input("Per iniziare scrivi il tuo nome: ")
 syncVarNickname_Player2 = input("Scegli il tuo Username: ")
-userUniqId_Player2 = input("Inserisci la tua età: ")
+userUniqId_Player2 = input("Come stai uwu?: ")
 
 Player1 = Player()
 Player1 = Player.ReferenceHub(Player1, userId_Player1, syncVarNickname_Player1, userUniqId_Player1)
@@ -40,95 +40,98 @@ Player2 = Player()
 Player2 = Player.ReferenceHub(Player2, userId_Player2, syncVarNickname_Player2, userUniqId_Player2)
 
 
-boardGame = {'7': ' ' , '8': ' ' , '9': ' ' ,
+theBoard = {'7': ' ' , '8': ' ' , '9': ' ' ,
              '4': ' ' , '5': ' ' , '6': ' ' ,
              '1': ' ' , '2': ' ' , '3': ' ' }
 
 boardKeys = []
-for key in boardGame:
+for key in theBoard:
     boardKeys.append(key)
 
 
-def backgroundBoard(board):
-    print(board['7'] + '  |' + board['8'] + ' |' + board['9'])
-    print('----------')
-    print(board['4'] + '  |' + board['5'] + ' |' + board['6'])
-    print('----------')
-    print(board['1'] + '  |' + board['2'] + ' |' + board['3'])
-    
+def printBoard(board):
+    print(board['7'] + '|' + board['8'] + '|' + board['9'])
+    print('-+-+-')
+    print(board['4'] + '|' + board['5'] + '|' + board['6'])
+    print('-+-+-')
+    print(board['1'] + '|' + board['2'] + '|' + board['3'])
+
 def game():
-    playerTurn = 'X'
-    playersTurnCounter = 0
+
+    turno = 'X'
+    counter = 0
     
     for i in range(10):
-        backgroundBoard(boardGame)
-        print("E' il tuo turno!," + playerTurn + ".Dove vuoi muovere?")
-        
-        move = input()
-        
-        if boardGame[move] == ' ':
-            boardGame[move] = playerTurn
-            playersTurnCounter += 1
+        printBoard(theBoard)
+        print("E' il tuo turno," + turno + ".Dove muoi muovere?")
+
+        move = input()        
+
+        if theBoard[move] == ' ':
+            theBoard[move] = turno
+            counter += 1
         else:
-            print("Quel posto è già occupato\nDove vuoi muovere?")
+            print("Questo posto è già occupato! non fare la sanguisuga.\nDove vuoi muovere?")
             continue
-        
-        if playersTurnCounter >= 4:
-            if boardGame['7'] == boardGame['8'] == boardGame['9'] != ' ':
-                backgroundBoard(boardGame)
-                print("\nFine del gioco\n")
-                print("\nHai vinto\n")
+
+        if counter >= 5:
+            if theBoard['7'] == theBoard['8'] == theBoard['9'] != ' ': # in alto
+                printBoard(theBoard)
+                print("\nGame Over.\n")                
+                print(" **** " +turno + " ha vinto. ****")                
                 break
-            elif boardGame['4'] == boardGame['5'] == boardGame['6'] != ' ':
-                backgroundBoard(boardGame)
-                print("\nFine del gioco\n")
-                print("\nHai vinto\n")
+            elif theBoard['4'] == theBoard['5'] == theBoard['6'] != ' ': # in mezzo
+                printBoard(theBoard)
+                print("\nGame Over.\n")                
+                print(" **** " +turno + " ha vinto. ****")
                 break
-            elif boardGame['1'] == boardGame['2'] == boardGame['3'] != ' ':
-                backgroundBoard(boardGame)
-                print("\nFine del gioco\n")
-                print("\nHai vinto\n")
+            elif theBoard['1'] == theBoard['2'] == theBoard['3'] != ' ': # sul fondo
+                printBoard(theBoard)
+                print("\nGame Over.\n")                
+                print(" **** " +turno + " ha vinto. ****")
                 break
-            if boardGame['1'] == boardGame['4'] == boardGame['7'] != ' ':
-                backgroundBoard(boardGame)
-                print("\nFine del gioco\n")
-                print("\nHai vinto\n")
+            elif theBoard['1'] == theBoard['4'] == theBoard['7'] != ' ': # lungo il lato sinistro
+                printBoard(theBoard)
+                print("\nGame Over.\n")                
+                print(" **** " +turno + " ha vinto. ****")
                 break
-            elif boardGame['2'] == boardGame['5'] == boardGame['8'] != ' ':
-                backgroundBoard(boardGame)
-                print("\nFine del gioco\n")
-                print("\nHai vinto\n")
+            elif theBoard['2'] == theBoard['5'] == theBoard['8'] != ' ': # nel mezzo
+                printBoard(theBoard)
+                print("\nGame Over.\n")                
+                print(" **** " +turno + " ha vinto. ****")
                 break
-            elif boardGame['3'] == boardGame['6'] == boardGame['9'] != ' ':
-                backgroundBoard(boardGame)
-                print("\nFine del gioco\n")
-                print("\nHai vinto\n")
+            elif theBoard['3'] == theBoard['6'] == theBoard['9'] != ' ': # lungo il lato destro
+                printBoard(theBoard)
+                print("\nGame Over.\n")                
+                print(" **** " +turno + " ha vinto. ****")
+                break 
+            elif theBoard['7'] == theBoard['5'] == theBoard['3'] != ' ': # diagonale
+                printBoard(theBoard)
+                print("\nGame Over.\n")                
+                print(" **** " +turno + " ha vinto. ****")
                 break
-            if boardGame['1'] == boardGame['5'] == boardGame['9'] != ' ':
-                backgroundBoard(boardGame)
-                print("\nFine del gioco\n")
-                print("\nHai vinto\n")
-                break
-            elif boardGame['7'] == boardGame['5'] == boardGame['3'] != ' ':
-                backgroundBoard(boardGame)
-                print("\nFine del gioco\n")
-                print(" hai vinto\n")
-                break
-            
-            if playersTurnCounter == 9:
-                print("\nFine del gioco\n")
-                print("\nParità\n")
-                
-            if playerTurn == 'X':
-                playerTurn = 'O'
-            else:
-                playerTurn = 'X'
-                
-            restartGame = input("Vuoi giocare ancora? S/N")
-            if restartGame == 'S' or restartGame == 's':
-                for key in boardKeys:
-                    boardGame[key] = ' '                  
-                game()
+            elif theBoard['1'] == theBoard['5'] == theBoard['9'] != ' ': # diagonale
+                printBoard(theBoard)
+                print("\nGame Over.\n")                
+                print(" **** " +turno + " ha vinto. ****")
+                break 
+
+        if counter == 9:
+            print("\nGame Over.\n")                
+            print("E' un pareggio, peggio di Civil War!!")
+
+        # Ora c'è da cambiare il turno ai giocatori.
+        if turno =='X':
+            turno = 'O'
+        else:
+            turno = 'X'        
+    
+    # Ora chiederemo al player se vuole ricominciare o meno.
+    restartGame = input("Vuoi giocare ancora? (s/n)")
+    if restartGame == 'S' or restartGame == 's':
+        for key in boardKeys:
+            theBoard[key] = " "                  
+        game()
                 
 if __name__ == "__main__":
     game()                          
