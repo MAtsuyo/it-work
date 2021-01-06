@@ -2,7 +2,7 @@
 """
 Created on Mon Jan  4 19:00:10 2021
 
-@author: ThatsDekuu
+@author: ThatsDekuu, Matsuyo the Dragon Summoner
 """
 
 #
