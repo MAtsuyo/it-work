@@ -62,7 +62,7 @@ def game():
     
     for i in range(10):
         backgroundBoard(boardGame)
-        print(Player1.ReferenceHub.GetUserId() + " è il tuo turno. Usa 'X'.\nDove vuoi muovere?" )
+        print("E' il tuo turno!," + playerTurn + ".Dove vuoi muovere?")
         
         move = input()
         
